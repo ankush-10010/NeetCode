@@ -1,0 +1,33 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <climits>
+#include<unordered_map>
+using namespace std;
+
+class Solution {
+public:
+    vector<vector<int>> result;
+    void dfs(vector<int> nums, vector<int> curr,vector<bool> used){
+        if(curr.size()==nums.size()){
+            result.push_back(curr);
+            return;
+        }
+        for(int i=0;i<nums.size();i++){
+            if(used[i]){
+                continue;
+            }
+            used[i]=true;
+            curr.push_back(nums[i]);
+            dfs(nums,curr,used);
+            curr.pop_back();
+            used[i]=false;
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<int> curr;
+        vector<bool> used(nums.size(),false);
+        dfs(nums,curr,used);
+        return result;
+    }
+};
