@@ -1,0 +1,36 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <climits>
+#include<unordered_map>
+using namespace std;
+
+
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+  };
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev=nullptr;
+        ListNode* next=nullptr;
+        ListNode* curr=head;
+        if(curr==nullptr){
+            return nullptr;
+        }
+        while(curr->next!=nullptr){
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        curr->next=prev;
+        prev=curr;
+        head = prev;
+        return head;
+    }
+};
