@@ -1,0 +1,6 @@
+# Ignore all .exe files in any subfolder
+*.exe
+
+# It's also good practice to ignore object files created during compilation
+*.o
+*.obj
